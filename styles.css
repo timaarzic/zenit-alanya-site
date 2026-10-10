@@ -1926,6 +1926,1206 @@ body:not(.home) .site-header {
   }
 }
 
+/* Final cascade guard: logo and responsive layout */
+body {
+  opacity: 1;
+}
+
+.brand-emblem {
+  width: 112px;
+  height: 66px;
+  margin: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent url("zenit-alanya-wordmark.png") center / contain no-repeat;
+  box-shadow: none;
+}
+
+.brand-emblem::after,
+.large-emblem::after,
+.zenit-score-logo span {
+  display: none;
+  content: none;
+}
+
+.logo-stage {
+  display: grid;
+  width: min(540px, 100%);
+  min-height: 500px;
+  margin-inline: auto;
+  place-items: center;
+}
+
+.logo-orbit {
+  inset: 0;
+  width: min(470px, 92%);
+  height: auto;
+  aspect-ratio: 1;
+  margin: auto;
+}
+
+.large-emblem {
+  position: relative;
+  inset: auto;
+  z-index: 2;
+  width: min(500px, 94%);
+  height: auto;
+  aspect-ratio: 1642 / 958;
+  border: 0;
+  border-radius: 0;
+  background: transparent url("zenit-alanya-wordmark.png") center / contain no-repeat;
+  box-shadow: none;
+}
+
+.zenit-score-logo {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.zenit-score-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hero-copy,
+.hero-visual,
+.section-heading > *,
+.story-preview > *,
+.coach-preview > *,
+.contact-layout > *,
+.training-intro > *,
+.match-layout > *,
+.score-team > div {
+  min-width: 0;
+}
+
+@media (max-width: 1040px) {
+  .brand-copy {
+    display: none;
+  }
+
+  .main-nav {
+    top: 92px;
+    right: 18px;
+    left: 18px;
+    max-height: calc(100dvh - 108px);
+    overflow-y: auto;
+  }
+
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  .hero-copy {
+    width: 100%;
+    max-width: 780px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .hero-copy > p {
+    margin-inline: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    min-height: 460px;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --container: calc(100% - 28px);
+    --radius: 20px;
+  }
+
+  html,
+  body {
+    width: 100%;
+    overflow-x: clip;
+  }
+
+  .site-header,
+  .site-header.scrolled,
+  body:not(.home) .site-header {
+    padding: 6px 0;
+  }
+
+  .nav-wrap {
+    min-height: 68px;
+    gap: 8px;
+  }
+
+  .brand {
+    gap: 0;
+    min-width: 0;
+  }
+
+  .brand-emblem {
+    width: 96px;
+    height: 56px;
+  }
+
+  .nav-actions {
+    margin-left: auto;
+    gap: 7px;
+  }
+
+  .lang-switch {
+    padding: 3px;
+  }
+
+  .lang-switch button {
+    min-width: 34px;
+    padding: 7px 6px;
+    font-size: 0.68rem;
+  }
+
+  .menu-toggle {
+    width: 43px;
+    height: 43px;
+    padding: 10px;
+  }
+
+  .main-nav {
+    top: 80px;
+    right: 14px;
+    left: 14px;
+    max-height: calc(100dvh - 94px);
+    padding: 10px;
+    border-radius: 18px;
+  }
+
+  .main-nav a {
+    padding: 12px 13px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 112px 0 54px;
+  }
+
+  .hero-grid {
+    width: var(--container);
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .hero-copy {
+    width: 100%;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .eyebrow {
+    max-width: 100%;
+    justify-content: center;
+    padding: 7px 11px;
+    white-space: normal;
+    font-size: 0.66rem;
+    line-height: 1.35;
+  }
+
+  .hero h1,
+  .page-hero h1 {
+    margin: 20px 0 16px;
+    font-size: clamp(2.7rem, 12vw, 4.25rem);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .hero-copy > p {
+    width: 100%;
+    max-width: 640px;
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
+  .hero-actions {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 25px;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    min-width: 0;
+    white-space: normal;
+  }
+
+  .hero-visual {
+    min-height: 400px;
+  }
+
+  .logo-stage {
+    width: 100%;
+    max-width: 370px;
+    min-height: 400px;
+    aspect-ratio: auto;
+  }
+
+  .logo-orbit {
+    width: min(320px, 88%);
+  }
+
+  .large-emblem {
+    position: absolute;
+    top: 44px;
+    right: 0;
+    left: 0;
+    width: 96%;
+    margin-inline: auto;
+  }
+
+  .hero-chip {
+    max-width: none;
+    padding: 10px 12px;
+    transform: none;
+  }
+
+  .hero-chip.one,
+  .hero-chip.two {
+    top: auto;
+    bottom: 4px;
+    width: calc(50% - 5px);
+  }
+
+  .hero-chip.one {
+    right: auto;
+    left: 0;
+  }
+
+  .hero-chip.two {
+    right: 0;
+    left: auto;
+  }
+
+  .stats-strip {
+    width: var(--container);
+    margin-top: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-radius: 18px;
+  }
+
+  .stat {
+    min-width: 0;
+    padding: 20px 8px;
+  }
+
+  .stat span {
+    font-size: 0.66rem;
+    line-height: 1.35;
+  }
+
+  .section,
+  .section.compact {
+    padding: 62px 0;
+  }
+
+  .section-heading,
+  .section-heading.center {
+    display: block;
+    margin-bottom: 30px;
+  }
+
+  .section-title,
+  .coach-copy h2 {
+    font-size: clamp(2.15rem, 10vw, 3.25rem);
+    line-height: 1.04;
+  }
+
+  .section-subtitle {
+    font-size: 0.96rem;
+  }
+
+  .section-heading .btn {
+    width: 100%;
+    margin-top: 22px;
+  }
+
+  .feature-grid,
+  .achievement-grid,
+  .staff-grid,
+  .contact-grid,
+  .group-grid,
+  .tournament-grid,
+  .story-preview,
+  .coach-preview,
+  .contact-layout,
+  .training-intro,
+  .social-grid,
+  .form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .feature-card,
+  .group-card {
+    min-height: 0;
+    padding: 24px;
+  }
+
+  .feature-card h3 {
+    margin-top: 25px;
+  }
+
+  .story-preview,
+  .coach-preview,
+  .contact-layout,
+  .training-intro {
+    gap: 30px;
+  }
+
+  .story-lead {
+    min-height: 340px;
+    padding: 28px;
+  }
+
+  .story-lead-copy {
+    right: 25px;
+    bottom: 25px;
+    left: 25px;
+  }
+
+  .story-lead h3 {
+    font-size: 1.65rem;
+  }
+
+  .milestone {
+    min-height: 0;
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 12px;
+    padding: 15px;
+  }
+
+  .milestone:hover {
+    transform: none;
+  }
+
+  .coach-image {
+    border-radius: 24px;
+  }
+
+  .coach-image img {
+    aspect-ratio: 1 / 1.08;
+  }
+
+  .coach-label {
+    right: 13px;
+    bottom: 13px;
+    left: 13px;
+    padding: 13px 14px;
+    border-radius: 14px;
+  }
+
+  .cta-band {
+    padding: 32px 20px;
+    border-radius: 22px;
+  }
+
+  .cta-band h2 {
+    font-size: clamp(1.9rem, 9vw, 2.7rem);
+    line-height: 1.08;
+  }
+
+  .cta-band .btn {
+    width: 100%;
+  }
+
+  .page-hero,
+  .match-hero {
+    min-height: 340px;
+    padding: 112px 0 48px;
+  }
+
+  .timeline-content,
+  .contact-form,
+  .price-card {
+    padding: 22px;
+  }
+
+  .schedule-tabs {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .schedule-tab {
+    width: 100%;
+  }
+
+  .schedule-panel {
+    width: 100%;
+    padding: 8px;
+  }
+
+  .schedule-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 5px;
+    margin-bottom: 8px;
+    padding: 15px;
+  }
+
+  .footer-main {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .site-footer .brand-emblem {
+    width: 116px;
+    height: 68px;
+    filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.18));
+  }
+
+  .match-toolbar {
+    display: grid;
+    gap: 12px;
+  }
+
+  .admin-open {
+    width: 100%;
+  }
+
+  .scoreboard {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 5px;
+    padding: 20px 10px 52px;
+  }
+
+  .score-logo {
+    width: 70px;
+    height: 62px;
+  }
+
+  .score-center {
+    min-width: 86px;
+  }
+
+  .score-team h2 {
+    font-size: 0.78rem;
+  }
+
+  .score-side {
+    font-size: 0.5rem;
+  }
+
+  .admin-panel-header,
+  .save-bar {
+    display: grid;
+  }
+}
+
+@media (max-width: 430px) {
+  :root {
+    --container: calc(100% - 22px);
+  }
+
+  .brand-emblem {
+    width: 88px;
+    height: 52px;
+  }
+
+  .hero h1,
+  .page-hero h1 {
+    font-size: clamp(2.45rem, 12.5vw, 3.4rem);
+  }
+
+  .hero-visual,
+  .logo-stage {
+    min-height: 410px;
+  }
+
+  .logo-stage {
+    max-width: 330px;
+  }
+
+  .logo-orbit {
+    width: min(290px, 90%);
+  }
+
+  .large-emblem {
+    top: 34px;
+    width: 98%;
+  }
+
+  .hero-chip {
+    right: 0;
+    left: 0;
+    width: 100%;
+    max-width: 300px;
+    margin-inline: auto;
+    justify-content: flex-start;
+  }
+
+  .hero-chip.one {
+    right: 0;
+    bottom: 62px;
+  }
+
+  .hero-chip.two {
+    right: 0;
+    bottom: 6px;
+    left: 0;
+  }
+
+  .milestone {
+    grid-template-columns: 1fr;
+  }
+
+  .scoreboard {
+    gap: 2px;
+    padding-inline: 7px;
+  }
+
+  .score-logo {
+    width: 58px;
+    height: 54px;
+  }
+
+  .score-center {
+    min-width: 72px;
+  }
+
+  .score-value {
+    gap: 2px;
+  }
+
+  .score-value strong {
+    min-width: 24px;
+    font-size: 2.15rem;
+  }
+
+  .score-value span {
+    font-size: 1.3rem;
+  }
+
+  .score-team h2 {
+    font-size: 0.66rem;
+  }
+
+  .admin-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Final responsive normalization — keep this block last. */
+body {
+  opacity: 1;
+}
+
+.brand-emblem {
+  width: 112px;
+  height: 66px;
+  margin: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent url("zenit-alanya-wordmark.png") center / contain no-repeat;
+  box-shadow: none;
+}
+
+.brand-emblem::after,
+.large-emblem::after,
+.zenit-score-logo span {
+  display: none;
+  content: none;
+}
+
+.large-emblem {
+  position: relative;
+  inset: auto;
+  z-index: 2;
+  width: min(500px, 94%);
+  height: auto;
+  aspect-ratio: 1642 / 958;
+  border: 0;
+  border-radius: 0;
+  background: transparent url("zenit-alanya-wordmark.png") center / contain no-repeat;
+  box-shadow: none;
+}
+
+.logo-stage {
+  display: grid;
+  width: min(540px, 100%);
+  min-height: 500px;
+  margin-inline: auto;
+  place-items: center;
+}
+
+.logo-orbit {
+  inset: 50% auto auto 50%;
+  width: min(470px, 92%);
+  height: auto;
+  aspect-ratio: 1;
+  transform-origin: center;
+}
+
+.zenit-score-logo {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.zenit-score-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hero-copy,
+.hero-visual,
+.section-heading > *,
+.story-preview > *,
+.coach-preview > *,
+.contact-layout > *,
+.training-intro > *,
+.match-layout > *,
+.score-team > div {
+  min-width: 0;
+}
+
+.section-title,
+.coach-copy h2,
+.cta-band h2,
+.page-hero h1 {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+@media (max-width: 1040px) {
+  .brand-copy {
+    display: none;
+  }
+
+  .main-nav {
+    top: 92px;
+    right: 18px;
+    left: 18px;
+    max-height: calc(100dvh - 108px);
+    overflow-y: auto;
+  }
+
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  .hero-copy {
+    width: 100%;
+    max-width: 780px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .hero-copy > p {
+    margin-inline: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    min-height: 460px;
+  }
+
+  .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --container: calc(100% - 28px);
+    --radius: 20px;
+  }
+
+  html,
+  body {
+    width: 100%;
+    overflow-x: clip;
+  }
+
+  .site-header,
+  .site-header.scrolled,
+  body:not(.home) .site-header {
+    padding: 6px 0;
+  }
+
+  .nav-wrap {
+    min-height: 68px;
+    gap: 8px;
+  }
+
+  .brand {
+    gap: 0;
+    min-width: 0;
+  }
+
+  .brand-emblem {
+    width: 96px;
+    height: 56px;
+  }
+
+  .nav-actions {
+    margin-left: auto;
+    gap: 7px;
+  }
+
+  .lang-switch {
+    padding: 3px;
+  }
+
+  .lang-switch button {
+    min-width: 34px;
+    padding: 7px 6px;
+    font-size: 0.68rem;
+  }
+
+  .menu-toggle {
+    width: 43px;
+    height: 43px;
+    padding: 10px;
+  }
+
+  .main-nav {
+    top: 80px;
+    right: 14px;
+    left: 14px;
+    max-height: calc(100dvh - 94px);
+    padding: 10px;
+    border-radius: 18px;
+  }
+
+  .main-nav a {
+    padding: 12px 13px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 112px 0 54px;
+  }
+
+  .hero-grid {
+    width: var(--container);
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .hero-copy {
+    width: 100%;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .eyebrow {
+    max-width: 100%;
+    justify-content: center;
+    padding: 7px 11px;
+    white-space: normal;
+    font-size: 0.66rem;
+    line-height: 1.35;
+  }
+
+  .hero h1,
+  .page-hero h1 {
+    margin: 20px 0 16px;
+    font-size: clamp(2.7rem, 12vw, 4.25rem);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .hero-copy > p {
+    width: 100%;
+    max-width: 640px;
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+
+  .hero-actions {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 25px;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    min-width: 0;
+    white-space: normal;
+  }
+
+  .hero-visual {
+    min-height: 400px;
+  }
+
+  .logo-stage {
+    width: 100%;
+    max-width: 370px;
+    min-height: 400px;
+    aspect-ratio: auto;
+  }
+
+  .logo-orbit {
+    top: 45%;
+    width: min(320px, 88%);
+  }
+
+  .large-emblem {
+    position: absolute;
+    top: 44px;
+    right: 0;
+    left: 0;
+    width: 96%;
+    margin-inline: auto;
+  }
+
+  .hero-chip {
+    max-width: none;
+    padding: 10px 12px;
+    transform: none;
+  }
+
+  .hero-chip.one,
+  .hero-chip.two {
+    top: auto;
+    bottom: 4px;
+    width: calc(50% - 5px);
+  }
+
+  .hero-chip.one {
+    right: auto;
+    left: 0;
+  }
+
+  .hero-chip.two {
+    right: 0;
+    left: auto;
+  }
+
+  .stats-strip {
+    width: var(--container);
+    margin-top: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-radius: 18px;
+  }
+
+  .stat {
+    min-width: 0;
+    padding: 20px 8px;
+  }
+
+  .stat span {
+    font-size: 0.66rem;
+    line-height: 1.35;
+  }
+
+  .section,
+  .section.compact {
+    padding: 62px 0;
+  }
+
+  .section-heading,
+  .section-heading.center {
+    display: block;
+    margin-bottom: 30px;
+  }
+
+  .section-title,
+  .coach-copy h2 {
+    font-size: clamp(2.15rem, 10vw, 3.25rem);
+    line-height: 1.04;
+  }
+
+  .section-subtitle {
+    font-size: 0.96rem;
+  }
+
+  .section-heading .btn {
+    width: 100%;
+    margin-top: 22px;
+  }
+
+  .feature-grid,
+  .achievement-grid,
+  .staff-grid,
+  .contact-grid,
+  .group-grid,
+  .tournament-grid,
+  .story-preview,
+  .coach-preview,
+  .contact-layout,
+  .training-intro,
+  .social-grid,
+  .form-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .feature-card,
+  .group-card {
+    min-height: 0;
+    padding: 24px;
+  }
+
+  .feature-card h3 {
+    margin-top: 25px;
+  }
+
+  .story-preview,
+  .coach-preview,
+  .contact-layout,
+  .training-intro {
+    gap: 30px;
+  }
+
+  .story-lead {
+    min-height: 340px;
+    padding: 28px;
+  }
+
+  .story-lead-copy {
+    right: 25px;
+    bottom: 25px;
+    left: 25px;
+  }
+
+  .story-lead h3 {
+    font-size: 1.65rem;
+  }
+
+  .milestone {
+    min-height: 0;
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 12px;
+    padding: 15px;
+  }
+
+  .milestone:hover {
+    transform: none;
+  }
+
+  .coach-image {
+    border-radius: 24px;
+  }
+
+  .coach-image img {
+    aspect-ratio: 1 / 1.08;
+  }
+
+  .coach-label {
+    right: 13px;
+    bottom: 13px;
+    left: 13px;
+    padding: 13px 14px;
+    border-radius: 14px;
+  }
+
+  .cta-band {
+    padding: 32px 20px;
+    border-radius: 22px;
+  }
+
+  .cta-band h2 {
+    font-size: clamp(1.9rem, 9vw, 2.7rem);
+    line-height: 1.08;
+  }
+
+  .cta-band .btn {
+    width: 100%;
+  }
+
+  .page-hero,
+  .match-hero {
+    min-height: 340px;
+    padding: 112px 0 48px;
+  }
+
+  .timeline-content,
+  .contact-form,
+  .price-card {
+    padding: 22px;
+  }
+
+  .schedule-tabs {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .schedule-tab {
+    width: 100%;
+  }
+
+  .schedule-panel {
+    width: 100%;
+    padding: 8px;
+  }
+
+  .schedule-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 5px;
+    margin-bottom: 8px;
+    padding: 15px;
+  }
+
+  .footer-main {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .site-footer .brand-emblem {
+    width: 116px;
+    height: 68px;
+    filter: drop-shadow(0 5px 12px rgba(0, 0, 0, 0.18));
+  }
+
+  .match-toolbar {
+    display: grid;
+    gap: 12px;
+  }
+
+  .admin-open {
+    width: 100%;
+  }
+
+  .scoreboard {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 5px;
+    padding: 20px 10px 52px;
+  }
+
+  .score-logo {
+    width: 70px;
+    height: 62px;
+  }
+
+  .score-center {
+    min-width: 86px;
+  }
+
+  .score-team h2 {
+    font-size: 0.78rem;
+  }
+
+  .score-side {
+    font-size: 0.5rem;
+  }
+
+  .admin-panel-header,
+  .save-bar {
+    display: grid;
+  }
+}
+
+@media (max-width: 430px) {
+  :root {
+    --container: calc(100% - 22px);
+  }
+
+  .brand-emblem {
+    width: 88px;
+    height: 52px;
+  }
+
+  .hero h1,
+  .page-hero h1 {
+    font-size: clamp(2.45rem, 12.5vw, 3.4rem);
+  }
+
+  .hero-visual {
+    min-height: 410px;
+  }
+
+  .logo-stage {
+    max-width: 330px;
+    min-height: 410px;
+  }
+
+  .logo-orbit {
+    top: 40%;
+    width: min(290px, 90%);
+  }
+
+  .large-emblem {
+    top: 34px;
+    width: 98%;
+  }
+
+  .hero-chip {
+    right: 0;
+    left: 0;
+    width: 100%;
+    max-width: 300px;
+    margin-inline: auto;
+    justify-content: flex-start;
+  }
+
+  .hero-chip.one {
+    right: 0;
+    bottom: 62px;
+  }
+
+  .hero-chip.two {
+    right: 0;
+    bottom: 6px;
+    left: 0;
+  }
+
+  .milestone {
+    grid-template-columns: 1fr;
+  }
+
+  .scoreboard {
+    gap: 2px;
+    padding-inline: 7px;
+  }
+
+  .score-logo {
+    width: 58px;
+    height: 54px;
+  }
+
+  .score-center {
+    min-width: 72px;
+  }
+
+  .score-value {
+    gap: 2px;
+  }
+
+  .score-value strong {
+    min-width: 24px;
+    font-size: 2.15rem;
+  }
+
+  .score-value span {
+    font-size: 1.3rem;
+  }
+
+  .score-team h2 {
+    font-size: 0.66rem;
+  }
+
+  .admin-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 /* 2026 official lockup and match centre */
 :root {
   --navy: #071f39;
@@ -3888,4 +5088,294 @@ body:not(.home) .site-header {
   .tournament-card:hover {
     transform: none;
   }
+}
+
+/* Mobile and logo overrides must remain at the absolute end of the cascade. */
+body { opacity: 1; }
+
+.brand-emblem {
+  width: 112px;
+  height: 66px;
+  margin: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent url("zenit-alanya-wordmark.png") center / contain no-repeat;
+  box-shadow: none;
+}
+
+.brand-emblem::after,
+.large-emblem::after,
+.zenit-score-logo span {
+  display: none;
+  content: none;
+}
+
+.logo-stage {
+  display: grid;
+  width: min(540px, 100%);
+  min-height: 500px;
+  margin-inline: auto;
+  place-items: center;
+}
+
+.logo-orbit {
+  inset: 0;
+  width: min(470px, 92%);
+  height: auto;
+  aspect-ratio: 1;
+  margin: auto;
+}
+
+.large-emblem {
+  position: relative;
+  inset: auto;
+  z-index: 2;
+  width: min(500px, 94%);
+  height: auto;
+  aspect-ratio: 1642 / 958;
+  border: 0;
+  border-radius: 0;
+  background: transparent url("zenit-alanya-wordmark.png") center / contain no-repeat;
+  box-shadow: none;
+}
+
+.zenit-score-logo {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.zenit-score-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hero-copy,
+.hero-visual,
+.section-heading > *,
+.match-layout > *,
+.score-team > div {
+  min-width: 0;
+}
+
+@media (max-width: 1040px) {
+  .brand-copy { display: none; }
+
+  .main-nav {
+    top: 92px;
+    right: 18px;
+    left: 18px;
+    max-height: calc(100dvh - 108px);
+    overflow-y: auto;
+  }
+
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  .hero-copy {
+    width: 100%;
+    max-width: 780px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .hero-copy > p { margin-inline: auto; }
+  .hero-actions { justify-content: center; }
+  .hero-visual { min-height: 460px; }
+}
+
+@media (max-width: 760px) {
+  :root { --container: calc(100% - 28px); }
+
+  html,
+  body {
+    width: 100%;
+    overflow-x: clip;
+  }
+
+  .site-header,
+  .site-header.scrolled,
+  body:not(.home) .site-header { padding: 6px 0; }
+
+  .nav-wrap { min-height: 68px; gap: 8px; }
+  .brand { min-width: 0; gap: 0; }
+  .brand-emblem { width: 96px; height: 56px; }
+  .nav-actions { margin-left: auto; gap: 7px; }
+  .lang-switch { padding: 3px; }
+  .lang-switch button { min-width: 34px; padding: 7px 6px; font-size: .68rem; }
+  .menu-toggle { width: 43px; height: 43px; padding: 10px; }
+
+  .main-nav {
+    top: 80px;
+    right: 14px;
+    left: 14px;
+    max-height: calc(100dvh - 94px);
+    padding: 10px;
+    border-radius: 18px;
+  }
+
+  .hero { min-height: auto; padding: 112px 0 54px; }
+
+  .hero-grid {
+    width: var(--container);
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .hero-copy { width: 100%; min-width: 0; text-align: center; }
+
+  .eyebrow {
+    max-width: 100%;
+    justify-content: center;
+    padding: 7px 11px;
+    white-space: normal;
+    font-size: .66rem;
+    line-height: 1.35;
+  }
+
+  .hero h1,
+  .page-hero h1 {
+    margin: 20px 0 16px;
+    font-size: clamp(2.7rem, 12vw, 4.25rem);
+    line-height: .98;
+    letter-spacing: -.045em;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .hero-copy > p { width: 100%; max-width: 640px; font-size: .98rem; line-height: 1.65; }
+
+  .hero-actions {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 25px;
+  }
+
+  .hero-actions .btn { width: 100%; min-width: 0; white-space: normal; }
+  .hero-visual { min-height: 400px; }
+
+  .logo-stage {
+    width: 100%;
+    max-width: 370px;
+    min-height: 400px;
+    aspect-ratio: auto;
+  }
+
+  .logo-orbit { width: min(320px, 88%); }
+
+  .large-emblem {
+    position: absolute;
+    top: 44px;
+    right: 0;
+    left: 0;
+    width: 96%;
+    margin-inline: auto;
+  }
+
+  .hero-chip { max-width: none; padding: 10px 12px; transform: none; }
+  .hero-chip.one,
+  .hero-chip.two { top: auto; bottom: 4px; width: calc(50% - 5px); }
+  .hero-chip.one { right: auto; left: 0; }
+  .hero-chip.two { right: 0; left: auto; }
+
+  .stats-strip {
+    width: var(--container);
+    margin-top: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-radius: 18px;
+  }
+
+  .stat { min-width: 0; padding: 20px 8px; }
+  .stat span { font-size: .66rem; line-height: 1.35; }
+
+  .section,
+  .section.compact { padding: 62px 0; }
+
+  .section-title,
+  .coach-copy h2 { font-size: clamp(2.15rem, 10vw, 3.25rem); line-height: 1.04; }
+
+  .feature-grid,
+  .achievement-grid,
+  .staff-grid,
+  .contact-grid,
+  .group-grid,
+  .tournament-grid,
+  .story-preview,
+  .coach-preview,
+  .contact-layout,
+  .training-intro,
+  .social-grid,
+  .form-grid { grid-template-columns: minmax(0, 1fr); }
+
+  .feature-card,
+  .group-card { min-height: 0; padding: 24px; }
+
+  .story-preview,
+  .coach-preview,
+  .contact-layout,
+  .training-intro { gap: 30px; }
+
+  .milestone { min-height: 0; grid-template-columns: 64px minmax(0, 1fr); gap: 12px; padding: 15px; }
+  .milestone:hover { transform: none; }
+  .coach-image { border-radius: 24px; }
+  .coach-label { right: 13px; bottom: 13px; left: 13px; padding: 13px 14px; }
+
+  .cta-band { padding: 32px 20px; border-radius: 22px; }
+  .cta-band h2 { font-size: clamp(1.9rem, 9vw, 2.7rem); line-height: 1.08; }
+  .cta-band .btn,
+  .section-heading .btn { width: 100%; }
+
+  .page-hero,
+  .match-hero { min-height: 340px; padding: 112px 0 48px; }
+
+  .schedule-tabs { display: grid; grid-template-columns: 1fr; }
+  .schedule-tab { width: 100%; }
+  .schedule-panel { width: 100%; padding: 8px; }
+  .schedule-row { grid-template-columns: 1fr; gap: 5px; margin-bottom: 8px; padding: 15px; }
+
+  .match-toolbar { display: grid; gap: 12px; }
+  .admin-open { width: 100%; }
+  .scoreboard { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 5px; padding: 20px 10px 52px; }
+  .score-logo { width: 70px; height: 62px; }
+  .score-center { min-width: 86px; }
+  .score-team h2 { font-size: .78rem; }
+  .score-side { font-size: .5rem; }
+}
+
+@media (max-width: 430px) {
+  :root { --container: calc(100% - 22px); }
+  .brand-emblem { width: 88px; height: 52px; }
+  .hero h1,
+  .page-hero h1 { font-size: clamp(2.45rem, 12.5vw, 3.4rem); }
+  .hero-visual,
+  .logo-stage { min-height: 410px; }
+  .logo-stage { max-width: 330px; }
+  .logo-orbit { width: min(290px, 90%); }
+  .large-emblem { top: 34px; width: 98%; }
+
+  .hero-chip {
+    right: 0;
+    left: 0;
+    width: 100%;
+    max-width: 300px;
+    margin-inline: auto;
+    justify-content: flex-start;
+  }
+
+  .hero-chip.one { right: 0; bottom: 62px; }
+  .hero-chip.two { right: 0; bottom: 6px; left: 0; }
+  .milestone { grid-template-columns: 1fr; }
+  .scoreboard { gap: 2px; padding-inline: 7px; }
+  .score-logo { width: 58px; height: 54px; }
+  .score-center { min-width: 72px; }
+  .score-value { gap: 2px; }
+  .score-value strong { min-width: 24px; font-size: 2.15rem; }
+  .score-value span { font-size: 1.3rem; }
+  .score-team h2 { font-size: .66rem; }
 }
