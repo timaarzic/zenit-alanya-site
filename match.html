@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Матч Zenit Alanya: состав, схема, счёт, события и лучший игрок.">
+  <title>Матч — Zenit Alanya</title>
+  <link rel="icon" href="zenit-official-logo.jpg">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="script.js"></script>
+  <script defer src="match-config.js"></script>
+  <script defer src="match.js"></script>
+</head>
+<body class="match-page">
+  <div class="progress-bar" aria-hidden="true"></div>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="Zenit Alanya — главная">
+        <span class="brand-emblem" aria-hidden="true"></span>
+        <span class="brand-copy"><strong data-ru="Футбольная школа" data-tr="Futbol okulu">Футбольная школа</strong><small data-ru="Аланья · Турция" data-tr="Alanya · Türkiye">Аланья · Турция</small></span>
+      </a>
+      <nav class="main-nav" aria-label="Основная навигация">
+        <a href="index.html" data-ru="Главная" data-tr="Ana sayfa">Главная</a>
+        <a href="history.html" data-ru="История" data-tr="Tarihçe">История</a>
+        <a href="training.html" data-ru="Тренировки" data-tr="Antrenmanlar">Тренировки</a>
+        <a href="team.html" data-ru="Команда" data-tr="Ekibimiz">Команда</a>
+        <a class="active" href="match.html" data-ru="Матч" data-tr="Maç">Матч</a>
+        <a href="contacts.html" data-ru="Контакты" data-tr="İletişim">Контакты</a>
+      </nav>
+      <div class="nav-actions">
+        <div class="lang-switch" aria-label="Выбор языка"><button class="active" type="button" data-lang="ru">RU</button><button type="button" data-lang="tr">TR</button></div>
+        <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero match-hero">
+      <div class="container page-hero-content reveal">
+        <div class="eyebrow"><span class="dot"></span><span data-ru="Матч-центр Zenit Alanya" data-tr="Zenit Alanya maç merkezi">Матч-центр Zenit Alanya</span></div>
+        <h1 data-ru="Команда на поле" data-tr="Takım sahada">Команда на поле</h1>
+        <p data-ru="Актуальный счёт, стартовый состав, тактическая схема и ключевые события матча — на одном экране." data-tr="Güncel skor, ilk 11, taktik diziliş ve maçın önemli anları tek ekranda.">Актуальный счёт, стартовый состав, тактическая схема и ключевые события матча — на одном экране.</p>
+      </div>
+    </section>
+
+    <section class="section match-section">
+      <div class="container">
+        <div class="match-toolbar reveal">
+          <div>
+            <p class="section-kicker" data-ru="Ближайшая игра" data-tr="Sıradaki maç">Ближайшая игра</p>
+            <p class="sync-status" id="sync-status" aria-live="polite" data-ru="Загрузка данных матча…" data-tr="Maç verileri yükleniyor…">Загрузка данных матча…</p>
+          </div>
+          <button class="btn btn-outline admin-open" type="button" id="admin-open"><svg class="ui-icon btn-icon" aria-hidden="true"><use href="icons.svg#lock"></use></svg><span data-ru="Режим администратора" data-tr="Yönetici modu">Режим администратора</span></button>
+        </div>
+
+        <article class="scoreboard reveal" aria-label="Счёт матча">
+          <div class="score-team score-home">
+            <div class="score-logo zenit-score-logo"><img src="zenit-official-logo.jpg" alt="Логотип Зенит"><span>АЛАНИЯ</span></div>
+            <div><span class="score-side" data-ru="Наша команда" data-tr="Takımımız">Наша команда</span><h2>Zenit Alanya</h2></div>
+          </div>
+          <div class="score-center">
+            <span class="match-status" id="match-status">Матч запланирован</span>
+            <div class="score-value"><strong id="home-score">0</strong><span>:</span><strong id="away-score">0</strong></div>
+            <div class="match-datetime"><span id="match-date">Дата уточняется</span><span class="meta-dot"></span><span id="match-time">—</span></div>
+          </div>
+          <div class="score-team score-away">
+            <div><span class="score-side" data-ru="Соперник" data-tr="Rakip">Соперник</span><h2 id="away-name">Соперник уточняется</h2></div>
+            <div class="score-logo opponent-logo" id="away-logo"><svg class="ui-icon" aria-hidden="true"><use href="icons.svg#shield"></use></svg></div>
+          </div>
+          <div class="match-venue"><svg class="ui-icon" aria-hidden="true"><use href="icons.svg#pin"></use></svg><span id="match-venue">Поле уточняется</span></div>
+        </article>
+
+        <div class="match-layout">
+          <div class="pitch-column reveal">
+            <div class="content-heading">
+              <div><p class="section-kicker" data-ru="Стартовый состав" data-tr="İlk 11">Стартовый состав</p><h2 id="formation-title">Схема 4-3-3</h2></div>
+              <span class="live-badge"><span></span><span data-ru="11 игроков" data-tr="11 oyuncu">11 игроков</span></span>
+            </div>
+            <div class="pitch-shell">
+              <div class="football-pitch" id="football-pitch" aria-label="Расстановка игроков Zenit Alanya">
+                <div class="pitch-line halfway"></div>
+                <div class="pitch-circle"></div>
+                <div class="pitch-box pitch-box-top"><span class="goal goal-top"></span></div>
+                <div class="pitch-box pitch-box-bottom"><span class="goal goal-bottom"></span></div>
+                <div class="penalty-spot spot-top"></div><div class="penalty-spot spot-bottom"></div>
+                <div class="players-layer" id="players-layer"></div>
+              </div>
+            </div>
+            <p class="pitch-help" id="pitch-help" hidden data-ru="Перетаскивайте игроков по полю. Координаты сохранятся после нажатия «Сохранить»." data-tr="Oyuncuları sahada sürükleyin. Konumlar “Kaydet” düğmesiyle kaydedilir.">Перетаскивайте игроков по полю. Координаты сохранятся после нажатия «Сохранить».</p>
+          </div>
+
+          <aside class="match-side reveal">
+            <section class="match-card bench-card">
+              <div class="card-heading"><span class="mini-icon"><svg class="ui-icon" aria-hidden="true"><use href="icons.svg#users"></use></svg></span><div><span data-ru="Состав" data-tr="Kadro">Состав</span><h3 data-ru="Скамейка запасных" data-tr="Yedek kulübesi">Скамейка запасных</h3></div></div>
+              <div class="bench-list" id="bench-list"></div>
+            </section>
+            <section class="match-card events-card">
+              <div class="card-heading"><span class="mini-icon"><svg class="ui-icon" aria-hidden="true"><use href="icons.svg#whistle"></use></svg></span><div><span data-ru="Протокол" data-tr="Maç raporu">Протокол</span><h3 data-ru="События матча" data-tr="Maç olayları">События матча</h3></div></div>
+              <div class="events-list" id="events-list"></div>
+            </section>
+          </aside>
+        </div>
+
+        <section class="motm-card reveal">
+          <div class="motm-photo" id="motm-photo"><svg class="ui-icon" aria-hidden="true"><use href="icons.svg#user"></use></svg></div>
+          <div class="motm-copy"><p class="section-kicker" data-ru="Лучший игрок матча" data-tr="Maçın oyuncusu">Лучший игрок матча</p><h2 id="motm-name" data-ru="Будет объявлен после игры" data-tr="Maçtan sonra açıklanacak">Будет объявлен после игры</h2><p data-ru="Фото и имя лучшего игрока появятся здесь после решения тренерского штаба." data-tr="En iyi oyuncunun fotoğrafı ve adı teknik ekibin kararıyla burada yer alacak.">Фото и имя лучшего игрока появятся здесь после решения тренерского штаба.</p></div>
+          <span class="motm-mark"><svg class="ui-icon" aria-hidden="true"><use href="icons.svg#star"></use></svg></span>
+        </section>
+      </div>
+    </section>
+
+    <section class="admin-section" id="admin-section" hidden>
+      <div class="container">
+        <div class="admin-login" id="admin-login">
+          <div class="admin-login-copy"><span class="mini-icon"><svg class="ui-icon" aria-hidden="true"><use href="icons.svg#lock"></use></svg></span><div><p class="section-kicker" data-ru="Закрытый доступ" data-tr="Özel erişim">Закрытый доступ</p><h2 data-ru="Управление матчем" data-tr="Maç yönetimi">Управление матчем</h2><p data-ru="Введите пароль администратора. Пароль не сохраняется на странице." data-tr="Yönetici şifresini girin. Şifre sayfada saklanmaz.">Введите пароль администратора. Пароль не сохраняется на странице.</p></div></div>
+          <form class="admin-login-form" id="admin-login-form">
+            <label for="admin-password" data-ru="Пароль" data-tr="Şifre">Пароль</label>
+            <div class="password-row"><input id="admin-password" name="password" type="password" autocomplete="current-password" required data-ru="Введите пароль" data-tr="Şifreyi girin"><button class="btn btn-blue" type="submit"><span data-ru="Войти" data-tr="Giriş">Войти</span><svg class="ui-icon btn-icon" aria-hidden="true"><use href="icons.svg#arrow-right"></use></svg></button></div>
+            <p class="form-message" id="login-message" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <div class="admin-panel" id="admin-panel" hidden>
+          <div class="admin-panel-header"><div><p class="section-kicker" data-ru="Панель администратора" data-tr="Yönetici paneli">Панель администратора</p><h2 data-ru="Редактирование матча" data-tr="Maçı düzenle">Редактирование матча</h2></div><div class="admin-actions"><button class="btn btn-ghost-dark" type="button" id="admin-logout"><svg class="ui-icon btn-icon" aria-hidden="true"><use href="icons.svg#logout"></use></svg><span data-ru="Выйти" data-tr="Çıkış">Выйти</span></button><button class="btn btn-primary" type="button" id="save-match"><svg class="ui-icon btn-icon" aria-hidden="true"><use href="icons.svg#save"></use></svg><span data-ru="Сохранить" data-tr="Kaydet">Сохранить</span></button></div></div>
+
+          <div class="admin-grid">
+            <section class="admin-card">
+              <div class="admin-card-title"><span class="mini-icon"><svg class="ui-icon" aria-hidden="true"><use href="icons.svg#edit"></use></svg></span><div><span>01</span><h3 data-ru="Матч и соперник" data-tr="Maç ve rakip">Матч и соперник</h3></div></div>
+              <div class="form-grid compact-grid">
+                <div class="field"><label for="edit-away-name" data-ru="Название соперника" data-tr="Rakip adı">Название соперника</label><input id="edit-away-name" type="text" maxlength="50"></div>
+                <div class="field"><label for="edit-away-logo" data-ru="Логотип соперника" data-tr="Rakip logosu">Логотип соперника</label><input id="edit-away-logo" type="file" accept="image/*"></div>
+                <div class="field"><label for="edit-home-score" data-ru="Счёт Zenit" data-tr="Zenit skoru">Счёт Zenit</label><input id="edit-home-score" type="number" min="0" max="99"></div>
+                <div class="field"><label for="edit-away-score" data-ru="Счёт соперника" data-tr="Rakip skoru">Счёт соперника</label><input id="edit-away-score" type="number" min="0" max="99"></div>
+                <div class="field"><label for="edit-date" data-ru="Дата" data-tr="Tarih">Дата</label><input id="edit-date" type="date"></div>
+                <div class="field"><label for="edit-time" data-ru="Время" data-tr="Saat">Время</label><input id="edit-time" type="time"></div>
+                <div class="field full"><label for="edit-venue" data-ru="Поле / стадион" data-tr="Saha / stadyum">Поле / стадион</label><input id="edit-venue" type="text" maxlength="100"></div>
+                <div class="field full"><label for="edit-status" data-ru="Статус матча" data-tr="Maç durumu">Статус матча</label><select id="edit-status"><option value="scheduled" data-ru="Матч запланирован" data-tr="Maç planlandı">Матч запланирован</option><option value="live" data-ru="Матч идёт" data-tr="Maç oynanıyor">Матч идёт</option><option value="finished" data-ru="Матч завершён" data-tr="Maç bitti">Матч завершён</option></select></div>
+              </div>
+            </section>
+
+            <section class="admin-card">
+              <div class="admin-card-title"><span class="mini-icon"><svg class="ui-icon" aria-hidden="true"><use href="icons.svg#movement"></use></svg></span><div><span>02</span><h3 data-ru="Тактика и состав" data-tr="Taktik ve kadro">Тактика и состав</h3></div></div>
+              <div class="field full"><label for="formation-select" data-ru="Тактическая схема" data-tr="Taktik diziliş">Тактическая схема</label><select id="formation-select"><option>4-3-3</option><option>4-4-2</option><option>4-2-3-1</option><option>3-5-2</option><option>3-4-3</option><option>5-3-2</option><option>4-1-4-1</option></select></div>
+              <form class="add-player-form" id="add-player-form">
+                <div class="field"><label for="player-number" data-ru="Номер" data-tr="Numara">Номер</label><input id="player-number" type="number" min="1" max="99" required></div>
+                <div class="field"><label for="player-name" data-ru="Имя / фамилия" data-tr="Ad / soyad">Имя / фамилия</label><input id="player-name" type="text" maxlength="40" required></div>
+                <div class="field"><label for="player-role" data-ru="Роль" data-tr="Rol">Роль</label><select id="player-role"><option value="field" data-ru="На поле" data-tr="Sahada">На поле</option><option value="bench" data-ru="Запасной" data-tr="Yedek">Запасной</option></select></div>
+                <button class="btn btn-blue add-player-button" type="submit"><svg class="ui-icon btn-icon" aria-hidden="true"><use href="icons.svg#plus"></use></svg><span data-ru="Добавить" data-tr="Ekle">Добавить</span></button>
+              </form>
+              <div class="roster-editor" id="roster-editor"></div>
+            </section>
+
+            <section class="admin-card">
+              <div class="admin-card-title"><span class="mini-icon"><svg class="ui-icon" aria-hidden="true"><use href="icons.svg#star"></use></svg></span><div><span>03</span><h3 data-ru="Лучший игрок" data-tr="Maçın oyuncusu">Лучший игрок</h3></div></div>
+              <div class="form-grid compact-grid">
+                <div class="field"><label for="edit-motm-name" data-ru="Имя / фамилия" data-tr="Ad / soyad">Имя / фамилия</label><input id="edit-motm-name" type="text" maxlength="50"></div>
+                <div class="field"><label for="edit-motm-photo" data-ru="Фотография" data-tr="Fotoğraf">Фотография</label><input id="edit-motm-photo" type="file" accept="image/*"></div>
+              </div>
+            </section>
+          </div>
+          <div class="save-bar"><p id="save-message" aria-live="polite" data-ru="Изменения видны в предпросмотре. Нажмите «Сохранить», чтобы показать их всем." data-tr="Değişiklikler önizlemede görünür. Herkese göstermek için “Kaydet”e basın.">Изменения видны в предпросмотре. Нажмите «Сохранить», чтобы показать их всем.</p><button class="btn btn-primary" type="button" id="save-match-bottom"><svg class="ui-icon btn-icon" aria-hidden="true"><use href="icons.svg#save"></use></svg><span data-ru="Сохранить матч" data-tr="Maçı kaydet">Сохранить матч</span></button></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-main"><div class="footer-about"><a class="brand" href="index.html"><span class="brand-emblem"></span><span class="brand-copy"><strong data-ru="Футбольная школа" data-tr="Futbol okulu">Футбольная школа</strong><small data-ru="Аланья · Турция" data-tr="Alanya · Türkiye">Аланья · Турция</small></span></a><p data-ru="Футбольная школа для мальчиков и девочек от 5 до 17 лет в Аланье." data-tr="Alanya'da 5–17 yaş arası kız ve erkek çocuklar için futbol okulu.">Футбольная школа для мальчиков и девочек от 5 до 17 лет в Аланье.</p></div><div class="footer-column"><h3 data-ru="Разделы" data-tr="Bölümler">Разделы</h3><div class="footer-links"><a href="history.html" data-ru="История" data-tr="Tarihçe">История</a><a href="training.html" data-ru="Тренировки" data-tr="Antrenmanlar">Тренировки</a><a href="team.html" data-ru="Команда" data-tr="Ekibimiz">Команда</a><a href="match.html" data-ru="Матч" data-tr="Maç">Матч</a><a href="contacts.html" data-ru="Контакты" data-tr="İletişim">Контакты</a></div></div><div class="footer-column"><h3 data-ru="Мы на связи" data-tr="Bize ulaşın">Мы на связи</h3><div class="footer-links"><a href="https://www.instagram.com/zenitalanya/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://t.me/zenitalanya" target="_blank" rel="noopener noreferrer">Telegram</a><a href="https://www.tiktok.com/@zenit_alanya?_r=1&amp;_t=ZS-9APyFFjigCd" target="_blank" rel="noopener noreferrer">TikTok</a><a href="https://wa.me/905388899272" target="_blank" rel="noopener noreferrer">WhatsApp</a></div></div></div><div class="container footer-bottom"><span>© <span data-year>2026</span> Zenit Alanya</span><span data-ru="Аланья, Анталья, Турция" data-tr="Alanya, Antalya, Türkiye">Аланья, Анталья, Турция</span></div></footer>
+</body>
+</html>
