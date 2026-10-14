@@ -120,7 +120,7 @@ body:not(.home) .site-header {
   flex: 0 0 auto;
   border: 2px solid rgba(255, 255, 255, 0.48);
   border-radius: 50%;
-  background: #0ca9e3 url("zenit-alanya-logo-source.jpg") center 31% / 125% auto no-repeat;
+  background: #0ca9e3 url("assets/zenit-alanya-logo-source.jpg") center 31% / 125% auto no-repeat;
   box-shadow: 0 8px 28px rgba(0, 167, 225, 0.28);
 }
 
@@ -468,7 +468,7 @@ body:not(.home) .site-header {
   overflow: hidden;
   border: 8px solid rgba(255, 255, 255, 0.94);
   border-radius: 50%;
-  background: #0ca9e3 url("zenit-alanya-logo-source.jpg") center 31% / 125% auto no-repeat;
+  background: #0ca9e3 url("assets/zenit-alanya-logo-source.jpg") center 31% / 125% auto no-repeat;
   box-shadow: 0 40px 90px rgba(0, 0, 0, 0.32), 0 0 0 18px rgba(255, 255, 255, 0.06);
   animation: float 5s ease-in-out infinite;
 }
@@ -1938,7 +1938,7 @@ body {
   overflow: visible;
   border: 0;
   border-radius: 0;
-  background: transparent url("zenit-alanya-wordmark.png") center / contain no-repeat;
+  background: transparent url("assets/zenit-alanya-wordmark.png") center / contain no-repeat;
   box-shadow: none;
 }
 
@@ -1974,7 +1974,7 @@ body {
   aspect-ratio: 1642 / 958;
   border: 0;
   border-radius: 0;
-  background: transparent url("zenit-alanya-wordmark.png") center / contain no-repeat;
+  background: transparent url("assets/zenit-alanya-wordmark.png") center / contain no-repeat;
   box-shadow: none;
 }
 
@@ -2521,6 +2521,60 @@ body {
   }
 }
 
+.coach-photo-reserved {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(12, 169, 227, .14), transparent 28%),
+    linear-gradient(145deg, #f7fbfe, #e9f5fb);
+}
+
+.coach-private-placeholder {
+  width: 100%;
+  min-height: 520px;
+}
+
+@media (max-width: 760px) {
+  .coach-private-placeholder { min-height: 420px; }
+}
+
+.reserved-label {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  left: 18px;
+  padding: 9px 12px;
+  border: 1px solid rgba(0, 145, 203, .16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .9);
+  color: var(--blue-deep);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .05em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.social-link.is-disabled,
+.footer-disabled {
+  cursor: default;
+  opacity: .58;
+}
+
+.social-link.is-disabled:hover {
+  transform: none;
+  border-color: var(--line);
+  box-shadow: none;
+}
+
+.footer-disabled {
+  display: inline-flex;
+  color: rgba(255, 255, 255, .56);
+  font-size: .92rem;
+}
+
 /* Final responsive normalization — keep this block last. */
 body {
   opacity: 1;
@@ -2533,7 +2587,7 @@ body {
   overflow: visible;
   border: 0;
   border-radius: 0;
-  background: transparent url("zenit-alanya-wordmark.png") center / contain no-repeat;
+  background: transparent url("assets/zenit-alanya-wordmark.png") center / contain no-repeat;
   box-shadow: none;
 }
 
@@ -2553,7 +2607,7 @@ body {
   aspect-ratio: 1642 / 958;
   border: 0;
   border-radius: 0;
-  background: transparent url("zenit-alanya-wordmark.png") center / contain no-repeat;
+  background: transparent url("assets/zenit-alanya-wordmark.png") center / contain no-repeat;
   box-shadow: none;
 }
 
@@ -3169,7 +3223,7 @@ body:not(.home) .site-header {
   overflow: visible;
   border: 0;
   border-radius: 0;
-  background: #fff url("zenit-official-logo.jpg") center / contain no-repeat;
+  background: #fff url("assets/zenit-official-logo.jpg") center / contain no-repeat;
   box-shadow: none;
 }
 
@@ -3257,7 +3311,7 @@ body:not(.home) .site-header {
   height: 300px;
   border: 1px solid var(--line);
   border-radius: 28px;
-  background: #fff url("zenit-official-logo.jpg") center 44% / 88% auto no-repeat;
+  background: #fff url("assets/zenit-official-logo.jpg") center 44% / 88% auto no-repeat;
   box-shadow: 0 26px 70px rgba(8, 61, 98, 0.12);
 }
 
@@ -3670,7 +3724,7 @@ body:not(.home) .site-header {
 .pitch-box-top { top: 2.7%; border-top: 0; }
 .pitch-box-bottom { bottom: 2.7%; border-bottom: 0; }
 
-.goal {
+.football-pitch .goal {
   position: absolute;
   left: 29%;
   width: 42%;
@@ -5100,7 +5154,7 @@ body { opacity: 1; }
   overflow: visible;
   border: 0;
   border-radius: 0;
-  background: transparent url("zenit-alanya-wordmark.png") center / contain no-repeat;
+  background: transparent url("assets/zenit-alanya-wordmark.png") center / contain no-repeat;
   box-shadow: none;
 }
 
@@ -5136,7 +5190,7 @@ body { opacity: 1; }
   aspect-ratio: 1642 / 958;
   border: 0;
   border-radius: 0;
-  background: transparent url("zenit-alanya-wordmark.png") center / contain no-repeat;
+  background: transparent url("assets/zenit-alanya-wordmark.png") center / contain no-repeat;
   box-shadow: none;
 }
 
@@ -5378,4 +5432,276 @@ body { opacity: 1; }
   .score-value strong { min-width: 24px; font-size: 2.15rem; }
   .score-value span { font-size: 1.3rem; }
   .score-team h2 { font-size: .66rem; }
+}
+
+/* Final mobile hero composition: clear logo and non-overlapping status cards. */
+@media (max-width: 760px) {
+  .hero-visual,
+  .logo-stage {
+    min-height: 500px;
+  }
+
+  .logo-orbit {
+    top: 18px;
+    bottom: auto;
+    margin-inline: auto;
+  }
+
+  .large-emblem {
+    top: 58px;
+  }
+
+  .hero-chip {
+    min-height: 82px;
+    border-radius: 20px;
+  }
+
+  .hero-chip > span:last-child {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+    line-height: 1.3;
+  }
+}
+
+@media (max-width: 430px) {
+  .hero-visual,
+  .logo-stage {
+    min-height: 570px;
+  }
+
+  .logo-orbit {
+    top: 30px;
+    bottom: auto;
+    width: min(292px, 90%);
+  }
+
+  .large-emblem {
+    top: 74px;
+    width: 98%;
+  }
+
+  .hero-chip {
+    right: 0;
+    left: 0;
+    width: min(100%, 310px);
+    max-width: 310px;
+    min-height: 94px;
+    margin-inline: auto;
+    padding: 14px 16px;
+    transform: none;
+  }
+
+  .hero-chip.one {
+    top: 358px;
+    bottom: auto;
+  }
+
+  .hero-chip.two {
+    top: 462px;
+    bottom: auto;
+  }
+
+  .hero-chip strong {
+    font-size: 1.18rem;
+    line-height: 1.05;
+  }
+
+  .hero-chip > span:last-child > span {
+    font-size: .72rem;
+    line-height: 1.3;
+  }
+}
+
+/* Responsive layout contract. Cards are in normal flow, never on top of the logo. */
+:root { --header-offset: 108px; }
+
+html { scroll-padding-top: var(--header-offset); }
+
+.container > *,
+.form-grid > *,
+.admin-grid > *,
+.contact-grid > *,
+.footer-main > *,
+.roster-identity > *,
+.add-player-form > * { min-width: 0; }
+
+.hero-visual { min-height: 0; }
+
+.logo-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  width: min(520px, 100%);
+  max-width: none;
+  min-height: 0;
+  aspect-ratio: auto;
+  padding: 68px 12px 12px;
+}
+
+.logo-orbit {
+  inset: 0 0 auto;
+  width: min(420px, 90%);
+  height: auto;
+  aspect-ratio: 1;
+  margin: 0 auto;
+  pointer-events: none;
+}
+
+.large-emblem {
+  position: relative;
+  inset: auto;
+  width: min(430px, 100%);
+  height: auto;
+  aspect-ratio: 1642 / 958;
+  margin: 0;
+  flex-shrink: 0;
+  animation: none;
+}
+
+.hero-badges {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  width: 100%;
+}
+
+.hero-badges .hero-chip {
+  position: static;
+  inset: auto;
+  width: 100%;
+  max-width: none;
+  min-height: 88px;
+  margin: 0;
+  padding: 16px;
+  border-radius: 18px;
+  justify-content: flex-start;
+  gap: 10px;
+  transform: none;
+  backdrop-filter: none;
+  background: #fff;
+}
+
+.hero-chip .chip-icon { flex: 0 0 auto; }
+.hero-badges .hero-chip > span:last-child { min-width: 0; line-height: 1.35; }
+.hero-badges .hero-chip strong { font-size: 1.18rem; line-height: 1.2; }
+.hero-badges .hero-chip > span:last-child > span { display: block; font-size: .76rem; }
+
+.section-heading > :first-child { flex: 1 1 auto; }
+.section-heading > .btn { flex-shrink: 0; }
+.faq-question { align-items: flex-start; text-align: left; }
+.faq-question span:last-child { flex: 0 0 auto; }
+.faq-answer { transition: max-height .25s ease; }
+.info-card a,
+.contact-card a,
+.footer-links a { overflow-wrap: anywhere; }
+
+/* A public pitch must allow normal touch scrolling. Only players are draggable. */
+.football-pitch { touch-action: pan-y; }
+.football-pitch.is-editing .pitch-player { touch-action: none; cursor: grab; }
+.pitch-player { --player-half-width: 42px; }
+.pitch-player:focus-visible { outline-color: #fff; }
+.match-venue { min-width: 0; overflow-wrap: anywhere; }
+.motm-photo img { object-fit: contain; }
+.admin-login,
+.admin-panel,
+.admin-card,
+.roster-row { min-width: 0; }
+.admin-actions { flex-wrap: wrap; }
+.roster-stats { flex-wrap: wrap; }
+.map-card { display: grid; grid-template-columns: minmax(0, 1fr) 64px; align-items: start; gap: 24px; padding: 34px; min-height: 280px; }
+.map-card::before, .map-card::after { pointer-events: none; }
+.map-copy { grid-column: 1; grid-row: 1; padding: 0; min-width: 0; }
+.map-pin { position: relative; inset: auto; grid-column: 2; grid-row: 1; align-self: start; margin: 8px 0; animation: none; }
+.map-copy h3, .map-copy p { overflow-wrap: anywhere; }
+.timeline::before { left: 137px; }
+.timeline-item { grid-template-columns: 160px minmax(0, 1fr); gap: 28px; }
+.timeline-year { padding-right: 38px; }
+.timeline-year::after { left: 130px; right: auto; top: 12px; }
+.staff-photo { display: flex; }
+.staff-photo .staff-placeholder { flex: 1 1 auto; width: 100%; height: auto; min-height: 340px; align-self: stretch; }
+.coach-photo-reserved .silhouette { border-color: rgba(0, 103, 185, .22); }
+.coach-photo-reserved .silhouette::before,
+.coach-photo-reserved .silhouette::after { background: rgba(0, 103, 185, .18); }
+.reserved-label { color: var(--blue); }
+
+@media (max-width: 1040px) {
+  .hero-visual { padding-top: 10px; }
+  .logo-stage { max-width: 500px; }
+  .admin-login { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .group-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .group-card { padding: 24px; }
+}
+
+@media (max-width: 900px) {
+  .group-grid { grid-template-columns: minmax(0, 1fr); }
+  .group-card { min-height: 0; }
+  .section-heading:not(.center) { align-items: flex-start; flex-direction: column; gap: 20px; }
+  .contact-layout { grid-template-columns: minmax(0, 1fr); gap: 36px; align-items: start; }
+  .contact-grid .contact-card:last-child { grid-column: 1 / -1; }
+  #signup-form input, #signup-form select, #signup-form textarea { font-size: 16px; }
+}
+
+@media (max-width: 760px) {
+  :root { --header-offset: 92px; }
+  .timeline::before { left: 13px; }
+  .timeline-item { grid-template-columns: minmax(0, 1fr); gap: 10px; padding-left: 42px; }
+  .timeline-year::after { left: -36px; right: auto; top: 8px; }
+  .hero-visual { padding-top: 18px; }
+  .logo-stage { max-width: 400px; padding: 62px 12px 4px; gap: 34px; min-height: 0; }
+  .logo-orbit { inset: 12px 0 auto; width: min(330px, 90%); margin: 0 auto; }
+  .large-emblem { inset: auto; width: 100%; height: auto; }
+  .section-heading > .btn { width: 100%; }
+  .pitch-player { --player-half-width: 33px; }
+  .admin-card input,
+  .admin-card select,
+  .admin-login input,
+  #signup-form input,
+  #signup-form select,
+  #signup-form textarea { min-width: 0; max-width: 100%; font-size: 16px; }
+  .admin-panel-header { flex-wrap: wrap; }
+  .admin-actions { display: flex; }
+  .admin-actions .btn { flex: 1 1 auto; }
+  .roster-row input,
+  .roster-row select { min-height: 44px; font-size: 16px; }
+  .counter-control { grid-template-columns: 24px 32px 24px 32px; }
+  .counter-control > span,
+  .counter-control > b,
+  .counter-control > button { min-height: 40px; }
+  .remove-player { width: 40px; height: 40px; }
+  .save-bar { bottom: max(12px, env(safe-area-inset-bottom)); }
+}
+
+@media (max-width: 430px) {
+  .hero-visual { padding-top: 8px; }
+  .logo-stage { width: 100%; max-width: 350px; min-height: 0; padding: 72px 10px 4px; gap: 38px; }
+  .logo-orbit { inset: 26px 0 auto; width: min(292px, 90%); }
+  .hero-badges { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .hero-badges .hero-chip { min-height: 78px; padding: 14px 18px; }
+  .hero-badges .hero-chip > span:last-child > span { font-size: .8rem; }
+  .pitch-player { --player-half-width: 30px; }
+  .scoreboard { padding-bottom: 70px; }
+  .match-venue { bottom: 14px; align-items: flex-start; text-align: center; line-height: 1.35; }
+  .match-venue .ui-icon { flex: 0 0 auto; }
+  .admin-login { padding: 18px; }
+  .admin-login-form { padding: 16px; }
+  .admin-card { padding: 14px; }
+  .add-player-form { padding: 12px; grid-template-columns: 68px minmax(0, 1fr); }
+  .roster-identity { grid-template-columns: 56px minmax(0, 1fr); }
+  .roster-stats { gap: 8px; }
+  .admin-actions { width: 100%; }
+  .map-card { grid-template-columns: minmax(0, 1fr); gap: 22px; padding: 26px; min-height: 0; }
+  .map-pin { grid-column: 1; grid-row: 1; margin: 2px 0 10px; }
+  .map-copy { grid-column: 1; grid-row: 2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .reveal { opacity: 1; transform: none; }
 }

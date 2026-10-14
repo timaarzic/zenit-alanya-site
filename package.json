@@ -1,0 +1,12 @@
+{
+  "name": "zenit-alanya-site",
+  "version": "1.8.0",
+  "private": true,
+  "scripts": {
+    "test": "node scripts/verify-site.cjs"
+  },
+  "devDependencies": {
+    "jsdom": "26.1.0",
+    "postcss": "8.5.6"
+  }
+}

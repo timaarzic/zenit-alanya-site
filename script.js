@@ -6,10 +6,21 @@
   const nav = document.querySelector('.main-nav');
   const langButtons = document.querySelectorAll('[data-lang]');
 
+  const storage = {
+    get(key) { try { return localStorage.getItem(key); } catch (_) { return null; } },
+    set(key, value) { try { localStorage.setItem(key, value); } catch (_) { /* Private browsing can disable storage. */ } }
+  };
+
+  const refreshOpenAnswers = () => {
+    document.querySelectorAll('.faq-item.open .faq-answer').forEach((answer) => {
+      answer.style.maxHeight = `${answer.scrollHeight}px`;
+    });
+  };
+
   const setLanguage = (lang) => {
     const selected = lang === 'tr' ? 'tr' : 'ru';
     document.documentElement.lang = selected;
-    localStorage.setItem('zenit-language', selected);
+    storage.set('zenit-language', selected);
 
     document.querySelectorAll('[data-ru][data-tr]').forEach((element) => {
       const value = element.dataset[selected];
@@ -27,13 +38,14 @@
       button.classList.toggle('active', isActive);
       button.setAttribute('aria-pressed', String(isActive));
     });
+    refreshOpenAnswers();
   };
 
   langButtons.forEach((button) => {
     button.addEventListener('click', () => setLanguage(button.dataset.lang));
   });
 
-  setLanguage(localStorage.getItem('zenit-language') || 'ru');
+  setLanguage(storage.get('zenit-language') || 'ru');
 
   const updateScroll = () => {
     const scrollTop = window.scrollY;
@@ -47,6 +59,17 @@
   updateScroll();
   window.addEventListener('scroll', updateScroll, { passive: true });
 
+  if (nav) {
+    nav.id ||= 'site-navigation';
+    menuToggle?.setAttribute('aria-controls', nav.id);
+  }
+
+  const closeMenu = () => {
+    nav?.classList.remove('open');
+    menuToggle?.classList.remove('active');
+    menuToggle?.setAttribute('aria-expanded', 'false');
+  };
+
   menuToggle?.addEventListener('click', () => {
     const open = menuToggle.classList.toggle('active');
     nav?.classList.toggle('open', open);
@@ -54,12 +77,24 @@
   });
 
   nav?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('open');
-      menuToggle?.classList.remove('active');
-      menuToggle?.setAttribute('aria-expanded', 'false');
-    });
+    link.addEventListener('click', closeMenu);
   });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && nav?.classList.contains('open')) {
+      closeMenu();
+      menuToggle?.focus();
+    }
+  });
+
+  document.addEventListener('click', (event) => {
+    if (nav?.classList.contains('open') && !nav.contains(event.target) && !menuToggle?.contains(event.target)) closeMenu();
+  });
+
+  const mobileQuery = window.matchMedia('(max-width: 1040px)');
+  if (mobileQuery.addEventListener) mobileQuery.addEventListener('change', closeMenu);
+  else mobileQuery.addListener(closeMenu);
+  window.addEventListener('resize', refreshOpenAnswers, { passive: true });
 
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -99,6 +134,9 @@
   document.querySelectorAll('[data-count]').forEach((element) => counterObserver.observe(element));
 
   document.querySelectorAll('.schedule-tab').forEach((tab) => {
+    tab.setAttribute('role', 'tab');
+    tab.id = `schedule-tab-${tab.dataset.group}`;
+    tab.setAttribute('aria-controls', `schedule-panel-${tab.dataset.group}`);
     tab.addEventListener('click', () => {
       const group = tab.dataset.group;
       document.querySelectorAll('.schedule-tab').forEach((item) => {
@@ -110,6 +148,12 @@
         panel.classList.toggle('active', panel.dataset.group === group);
       });
     });
+  });
+
+  document.querySelectorAll('.schedule-panel').forEach((panel) => {
+    panel.id = `schedule-panel-${panel.dataset.group}`;
+    panel.setAttribute('role', 'tabpanel');
+    panel.setAttribute('aria-labelledby', `schedule-tab-${panel.dataset.group}`);
   });
 
   document.querySelectorAll('.faq-question').forEach((question) => {

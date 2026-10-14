@@ -9,7 +9,13 @@
   const lang = () => document.documentElement.lang === 'tr' ? 'tr' : 'ru';
   const tr = (ru, turkish) => lang() === 'tr' ? turkish : ru;
   const isConfigured = Boolean(config.supabaseUrl && config.publishableKey);
+  const isAdminConfigured = Boolean(isConfigured && config.adminFunction);
   const sessionKey = 'zenit-match-admin-session';
+  const sessionStore = {
+    get() { try { return sessionStorage.getItem(sessionKey); } catch (_) { return null; } },
+    set(value) { try { sessionStorage.setItem(sessionKey, value); } catch (_) { /* Keep the session in memory when storage is unavailable. */ } },
+    clear() { try { sessionStorage.removeItem(sessionKey); } catch (_) { /* no-op */ } }
+  };
 
   const formationPositions = {
     '4-3-3': [[50,91],[16,74],[38,77],[62,77],[84,74],[25,53],[50,59],[75,53],[19,27],[50,20],[81,27]],
@@ -43,7 +49,7 @@
   };
 
   let state = structuredClone(defaultState);
-  let accessToken = '';
+  let adminToken = '';
   let adminMode = false;
   let dirty = false;
   let pollTimer = null;
@@ -102,6 +108,30 @@
     }
     if (response.status === 204) return null;
     return response.json();
+  };
+
+  const adminApi = async (payload) => {
+    if (!isAdminConfigured) throw new Error('not-configured');
+    const response = await fetch(`${config.supabaseUrl}${config.adminFunction}`, {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-store',
+      credentials: 'omit',
+      headers: {
+        apikey: config.publishableKey,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+    let result = {};
+    try { result = await response.json(); } catch (_) { /* handled below */ }
+    if (!response.ok) {
+      const error = new Error(result.error || `HTTP ${response.status}`);
+      error.code = result.error || 'request-failed';
+      error.status = response.status;
+      throw error;
+    }
+    return result;
   };
 
   const setSyncStatus = (text, tone = '') => {
@@ -163,10 +193,11 @@
     element.type = 'button';
     element.className = 'pitch-player';
     element.dataset.playerId = player.id;
-    element.style.left = `${player.x}%`;
-    element.style.top = `${player.y}%`;
+    element.style.left = `clamp(var(--player-half-width, 42px), ${player.x}%, calc(100% - var(--player-half-width, 42px)))`;
+    element.style.top = `clamp(30px, ${player.y}%, calc(100% - 30px))`;
     element.innerHTML = `<span class="player-disc">${player.number}</span><span class="player-label">${escapeHtml(player.name)}</span>`;
     if (!adminMode) element.tabIndex = -1;
+    element.setAttribute('aria-label', `${player.name}, ${tr('номер', 'numara')} ${player.number}`);
     return element;
   };
 
@@ -176,6 +207,7 @@
     layer.innerHTML = '';
     state.players.filter((player) => player.role === 'field').slice(0, 11).forEach((player) => layer.append(playerNode(player)));
     $('#pitch-help').hidden = !adminMode;
+    $('#football-pitch').classList.toggle('is-editing', adminMode);
   };
 
   const statBadges = (stats) => {
@@ -208,6 +240,8 @@
     photo.innerHTML = safeImage(state.motm.photo) ? `<img src="${state.motm.photo}" alt="${tr('Лучший игрок матча', 'Maçın oyuncusu')}">` : '<svg class="ui-icon" aria-hidden="true"><use href="icons.svg#user"></use></svg>';
     const name = $('#motm-name');
     name.textContent = state.motm.name || tr('Будет объявлен после игры', 'Maçtan sonra açıklanacak');
+    const description = document.querySelector('.motm-copy p:last-child');
+    if (description) description.hidden = Boolean(state.motm.name);
   };
 
   const renderRosterEditor = () => {
@@ -291,7 +325,7 @@
 
   const saveMatch = async () => {
     syncStateFromFields(); renderAll();
-    if (!accessToken) {
+    if (!adminToken) {
       $('#save-message').textContent = tr('Сессия завершена. Войдите снова.', 'Oturum sona erdi. Tekrar giriş yapın.');
       return;
     }
@@ -299,16 +333,17 @@
     buttons.forEach((button) => { if (button) button.disabled = true; });
     $('#save-message').textContent = tr('Сохраняем изменения…', 'Değişiklikler kaydediliyor…');
     try {
-      await api('/rest/v1/match_state?id=eq.main', {
-        method: 'PATCH',
-        headers: { Authorization: `Bearer ${accessToken}`, Prefer: 'return=minimal' },
-        body: JSON.stringify({ data: state, updated_at: new Date().toISOString() })
-      });
+      await adminApi({ action: 'save', token: adminToken, data: state });
       dirty = false;
       $('#save-message').textContent = tr('Сохранено. Обновление уже видно всем посетителям.', 'Kaydedildi. Güncelleme tüm ziyaretçilere gösteriliyor.');
       setSyncStatus(tr('Изменения опубликованы', 'Değişiklikler yayınlandı'), 'ok');
     } catch (error) {
-      $('#save-message').textContent = tr('Не удалось сохранить. Проверьте соединение или войдите снова.', 'Kaydedilemedi. Bağlantıyı kontrol edin veya tekrar giriş yapın.');
+      if (error.status === 401) {
+        logout();
+        $('#login-message').textContent = tr('Сессия завершена. Введите пароль ещё раз.', 'Oturum sona erdi. Şifreyi tekrar girin.');
+      } else {
+        $('#save-message').textContent = tr('Не удалось сохранить. Проверьте соединение и повторите.', 'Kaydedilemedi. Bağlantıyı kontrol edip tekrar deneyin.');
+      }
     } finally {
       buttons.forEach((button) => { if (button) button.disabled = false; });
     }
@@ -318,7 +353,7 @@
     const section = $('#admin-section');
     section.hidden = false;
     section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    if (accessToken) showAdminPanel();
+    if (adminToken) showAdminPanel();
   };
 
   const showAdminPanel = () => {
@@ -329,10 +364,10 @@
   };
 
   const logout = () => {
-    accessToken = '';
+    adminToken = '';
     adminMode = false;
     dirty = false;
-    sessionStorage.removeItem(sessionKey);
+    sessionStore.clear();
     $('#admin-login').hidden = false;
     $('#admin-panel').hidden = true;
     $('#admin-password').value = '';
@@ -340,13 +375,10 @@
   };
 
   const login = async (password) => {
-    if (!isConfigured) throw new Error('not-configured');
-    const result = await api('/auth/v1/token?grant_type=password', {
-      method: 'POST', body: JSON.stringify({ email: config.adminEmail, password })
-    });
-    if (!result?.access_token) throw new Error('auth-failed');
-    accessToken = result.access_token;
-    sessionStorage.setItem(sessionKey, JSON.stringify({ token: result.access_token, expiresAt: Date.now() + (Number(result.expires_in) || 3600) * 1000 }));
+    const result = await adminApi({ action: 'login', password });
+    if (!result?.token) throw new Error('auth-failed');
+    adminToken = result.token;
+    sessionStore.set(JSON.stringify({ token: result.token, expiresAt: Date.now() + (Number(result.expiresIn) || 7200) * 1000 }));
   };
 
   $('#admin-open')?.addEventListener('click', openAdmin);
@@ -362,7 +394,13 @@
       message.textContent = '';
       showAdminPanel();
     } catch (error) {
-      message.textContent = error.message === 'not-configured' ? tr('Защищённый backend ещё подключается.', 'Güvenli arka uç henüz bağlanıyor.') : tr('Неверный пароль или доступ временно недоступен.', 'Şifre yanlış veya erişim geçici olarak kullanılamıyor.');
+      if (error.message === 'not-configured') {
+        message.textContent = tr('Защищённый backend ещё подключается.', 'Güvenli arka uç henüz bağlanıyor.');
+      } else if (error.code === 'invalid-credentials' || error.status === 401) {
+        message.textContent = tr('Неверный пароль. Проверьте раскладку и повторите ввод.', 'Şifre yanlış. Klavye düzenini kontrol edip tekrar deneyin.');
+      } else {
+        message.textContent = tr('Не удалось связаться с сервером. Обновите страницу и повторите попытку.', 'Sunucuya ulaşılamadı. Sayfayı yenileyip tekrar deneyin.');
+      }
     } finally { submit.disabled = false; }
   });
 
@@ -440,7 +478,8 @@
       const rect = pitch.getBoundingClientRect();
       player.x = clamp(((moveEvent.clientX - rect.left) / rect.width) * 100, 4, 96);
       player.y = clamp(((moveEvent.clientY - rect.top) / rect.height) * 100, 5, 95);
-      node.style.left = `${player.x}%`; node.style.top = `${player.y}%`;
+      node.style.left = `clamp(var(--player-half-width, 42px), ${player.x}%, calc(100% - var(--player-half-width, 42px)))`;
+      node.style.top = `clamp(30px, ${player.y}%, calc(100% - 30px))`;
       markDirty();
     };
     const end = () => { node.classList.remove('dragging'); node.removeEventListener('pointermove', move); node.removeEventListener('pointerup', end); node.removeEventListener('pointercancel', end); };
@@ -450,10 +489,10 @@
   document.querySelectorAll('[data-lang]').forEach((button) => button.addEventListener('click', () => setTimeout(renderAll, 0)));
 
   try {
-    const saved = JSON.parse(sessionStorage.getItem(sessionKey) || 'null');
-    if (saved?.token && saved.expiresAt > Date.now() + 30000) accessToken = saved.token;
-    else sessionStorage.removeItem(sessionKey);
-  } catch (_) { sessionStorage.removeItem(sessionKey); }
+    const saved = JSON.parse(sessionStore.get() || 'null');
+    if (saved?.token && saved.expiresAt > Date.now() + 30000) adminToken = saved.token;
+    else sessionStore.clear();
+  } catch (_) { sessionStore.clear(); }
 
   state = normalizeState(state);
   renderAll();
